@@ -33,7 +33,9 @@ class DummyyClass extends Controller
         // Create a new Dummyy instance.
         $dummyInstance = Dummyy::create($request->all());
 
-        return fractal($dummyInstance, new DummyyTransformer())->respond();
+        return fractal($dummyInstance, new DummyyTransformer())->respond(function(JsonResponse $response) {
+            $response->setStatusCode(201);
+        });
     }
 
     /**
