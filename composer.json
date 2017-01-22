@@ -1,0 +1,27 @@
+{
+    "name": "fab/larapi",
+    "description": "Larapi is a CRUD REST API package for Laravel.",
+    "keywords": ["laravel", "api", "rest", "search", "scaffolding"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Fabrice Clementz",
+            "email": "fabrice.clementz@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Fab\\Larapi\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.5.0",
+        "illuminate/database": "~5.3",
+        "illuminate/support": "~5.3",
+        "spatie/laravel-fractal": "^3.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7",
+        "mockery/mockery": "^0.9.6"
+    }
+}

@@ -1,0 +1,80 @@
+<?php
+
+namespace DummyNamespace;
+
+use App\Dummyy;
+use App\Transformers\DummyyTransformer;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+
+class DummyyClass extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $dummyInstances = Dummyy::all();
+
+        return fractal($dummyInstances, new DummyyTransformer())->respond();
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        // Create a new Dummyy instance.
+        $dummyInstance = Dummyy::create($request->all());
+
+        return fractal($dummyInstance, new DummyyTransformer())->respond();
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Dummyy  $dummyInstance
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Dummyy $dummyInstance)
+    {
+        return fractal($dummyInstance, new DummyyTransformer())->respond();
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Dummyy  $dummyInstance
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Dummyy $dummyInstance)
+    {
+        // Update the Book instance.
+        $dummyInstance->fill($request->all());
+        $dummyInstance->save();
+
+        return fractal($dummyInstance, new DummyyTransformer())->respond();
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Dummyy  $dummyInstance
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Dummyy $dummyInstance)
+    {
+        $dummyInstance->destroy();
+
+        return fractal('', new DummyyTransformer())->respond(function(JsonResponse $response) {
+            $response->setStatusCode(204);
+        });
+    }
+}
