@@ -5,10 +5,11 @@ namespace DummyNamespace;
 use App\Dummyy;
 use App\Transformers\DummyyTransformer;
 use App\Http\Controllers\Controller;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
-class DummyyClass extends Controller
+class DummyyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +18,11 @@ class DummyyClass extends Controller
      */
     public function index()
     {
-        $dummyInstances = Dummyy::all();
+        $paginator = Dummyy::paginate(15);
 
-        return fractal($dummyInstances, new DummyyTransformer())->respond();
+        return fractal($paginator->getCollection(), new DummyyTransformer())
+            ->paginateWith(new IlluminatePaginatorAdapter($paginator))
+            ->respond();
     }
 
     /**
