@@ -12,7 +12,7 @@ class MakeEndpointCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $signature = 'larapi:make:endpoint {name : The name of the endpoint}';
+    protected $signature = 'larapi:make:endpoint {name : The name of the endpoint} {version : The api version}';
     /**
      * The console command description.
      *
@@ -25,6 +25,12 @@ class MakeEndpointCommand extends GeneratorCommand
      * @var \Illuminate\Filesystem\Filesystem
      */
     protected $files;
+    /**
+     * The api version
+     *
+     * @var string
+     */
+    protected $apiVersion;
     /**
     * Create a new Endpoint creator command instance.
     *
@@ -45,6 +51,7 @@ class MakeEndpointCommand extends GeneratorCommand
     public function fire()
     {
         $name = $this->parseName($this->getNameInput());
+        $this->apiVersion = strtoupper($this->argument('version'));
 
         // Generate a model.
         $this->call('make:model', [
@@ -90,7 +97,7 @@ class MakeEndpointCommand extends GeneratorCommand
     protected function replaceNamespace(&$stub, $name)
     {
         $stub = str_replace(
-            'DummyNamespace', $this->getNamespace($name).'\\Http\\Controllers\\Api\\V1', $stub
+            'DummyNamespace', $this->getNamespace($name).'\\Http\\Controllers\\Api\\'.$this->apiVersion, $stub
         );
 
         return $this;
@@ -120,7 +127,7 @@ class MakeEndpointCommand extends GeneratorCommand
     {
         $name = str_replace_first($this->laravel->getNamespace(), '', $name);
 
-        $name = 'Http\\Controllers\\Api\\V1\\' . $name;
+        $name = 'Http\\Controllers\\Api\\'.$this->apiVersion.'\\' . $name;
 
         return $this->laravel['path'].'/'.str_replace('\\', '/', $name).'Controller.php';
     }
