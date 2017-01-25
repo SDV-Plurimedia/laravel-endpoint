@@ -2,9 +2,10 @@
 
 namespace DummyNamespace;
 
-use App\Dummyy;
+use DummyFullModelClass;
+use Fab\Larapi\Contracts\Repositories\EloquentRepository as RepositoryContract;
 
-class DummyyRepository
+class DummyModelClassRepository implements RepositoryContract
 {
     /**
      * Returns a paginator instance.
@@ -15,60 +16,60 @@ class DummyyRepository
      */
     public function paginate($max)
     {
-        return Dummyy::paginate($max);
+        return DummyModelClass::paginate($max);
     }
 
     /**
-     * Returns a dummyInstance by id.
+     * Returns a DummyModelVariable by id.
      *
-     * @param  int|string $id The id of the dummyInstance.
+     * @param  int|string $id The id of the DummyModelVariable.
      *
-     * @return Dummyy|null
+     * @return DummyModelClass|null
      */
     public function find($id)
     {
-        return Dummyy::where('id', $id)->first();
+        return DummyModelClass::where('id', $id)->first();
     }
 
     /**
-     * Create a new dummyInstance.
+     * Create a new DummyModelVariable.
      *
      * @param  array  $data The data needed for creation.
      *
-     * @return Dummyy       The created dummyInstance.
+     * @return DummyFullModelClass       The created DummyModelVariable.
      */
     public function create(array $data)
     {
-        $dummyInstance = Dummyy::create($data);
+        $DummyModelVariable = DummyModelClass::create($data);
 
-        return $dummyInstance;
+        return $DummyModelVariable;
     }
 
     /**
-     * Update a dummyInstance.
+     * Update a DummyModelVariable.
      *
-     * @param  Dummyy $dummyInstance The dummyInstance to update.
+     * @param  DummyFullModelClass $DummyModelVariable The DummyModelVariable to update.
      * @param  array  $data          The data to update.
      *
-     * @return Dummyy                The updated dummyInstance.
+     * @return DummyFullModelClass                The updated DummyModelVariable.
      */
-    public function update(Dummyy $dummyInstance, array $data)
+    public function update($DummyModelVariable, array $data)
     {
-        $dummyInstance->fill($data);
-        $dummyInstance->save();
+        $DummyModelVariable->fill($data);
+        $DummyModelVariable->save();
 
-        return $dummyInstance;
+        return $DummyModelVariable;
     }
 
     /**
      * Delete a model instance.
      *
-     * @param  Dummyy $dummyInstance The model instance to delete.
+     * @param  DummyFullModelClass $DummyModelVariable The model instance to delete.
      *
      * @return void
      */
-    public function delete(Dummyy $dummyInstance)
+    public function delete($DummyModelVariable)
     {
-        $dummyInstance->delete();
+        $DummyModelVariable->delete();
     }
 }

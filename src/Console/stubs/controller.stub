@@ -2,30 +2,30 @@
 
 namespace DummyNamespace;
 
-use App\Dummyy;
-use App\Repositories\DummyyRepository;
-use App\Transformers\DummyyTransformer;
-use SdV\Larapi\Http\Controllers\ApiController;
+use DummyFullModelClass;
+use DummyRootNamespaceRepositories\DummyModelClassRepository;
+use DummyRootNamespaceTransformers\DummyModelClassTransformer;
+use Fab\Larapi\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 
-class DummyyController extends ApiController
+class DummyModelClassController extends ApiController
 {
     /**
-     * The DummyyRepository instance.
+     * The DummyModelClassRepository instance.
      *
-     * @var DummyyRepository
+     * @var DummyModelClassRepository
      */
-    protected $dummyInstances;
+    protected $DummyModelVariables;
 
     /**
-     * Create a new DummyyController instance.
+     * Create a new DummyModelClassController instance.
      *
-     * @param  DummyyRepository  $dummyInstances
+     * @param  DummyModelClassRepository  $DummyModelVariables
      * @return void
      */
-    public function __construct(DummyyRepository $dummyInstances)
+    public function __construct(DummyModelClassRepository $DummyModelVariables)
     {
-        $this->dummyInstances = $dummyInstances;
+        $this->DummyModelVariables = $DummyModelVariables;
     }
 
     /**
@@ -35,9 +35,9 @@ class DummyyController extends ApiController
      */
     public function index()
     {
-        $paginator = $this->dummyInstances->paginate(15);
+        $paginator = $this->DummyModelVariables->paginate(15);
 
-        return $this->respondPaginate($paginator, new DummyyTransformer());
+        return $this->respondPaginate($paginator, new DummyModelClassTransformer());
     }
 
     /**
@@ -48,45 +48,45 @@ class DummyyController extends ApiController
      */
     public function store(Request $request)
     {
-        $dummyInstance = $this->dummyInstances->create($request->all());
+        $DummyModelVariable = $this->DummyModelVariables->create($request->all());
 
-        return $this->respondCreated($dummyInstance, new DummyyTransformer());
+        return $this->respondCreated($DummyModelVariable, new DummyModelClassTransformer());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Dummyy  $dummyInstance
+     * @param  DummyFullModelClass  $DummyModelVariable
      * @return \Illuminate\Http\Response
      */
-    public function show(Dummyy $dummyInstance)
+    public function show(DummyModelClass $DummyModelVariable)
     {
-        return $this->respond($dummyInstance, new DummyyTransformer());
+        return $this->respond($DummyModelVariable, new DummyModelClassTransformer());
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Dummyy  $dummyInstance
+     * @param  DummyFullModelClass  $dummyInstance
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dummyy $dummyInstance)
+    public function update(Request $request, DummyModelClass $DummyModelVariable)
     {
-        $dummyInstance = $this->dummyInstances->update($dummyInstance, $request->all());
+        $DummyModelVariable = $this->DummyModelVariables->update($DummyModelVariable, $request->all());
 
-        return $this->respond($dummyInstance, new DummyyTransformer());
+        return $this->respond($DummyModelVariable, new DummyModelClassTransformer());
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Dummyy  $dummyInstance
+     * @param  DummyFullModelClass  $DummyModelVariable
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dummyy $dummyInstance)
+    public function destroy(DummyModelClass $DummyModelVariable)
     {
-        $this->dummyInstances->delete($dummyInstance);
+        $this->DummyModelVariables->delete($DummyModelVariable);
 
         return $this->respondNoContent();
     }

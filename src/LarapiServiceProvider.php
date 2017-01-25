@@ -1,6 +1,6 @@
 <?php
 
-namespace SdV\Larapi;
+namespace Fab\Larapi;
 
 use Illuminate\Support\ServiceProvider;
 

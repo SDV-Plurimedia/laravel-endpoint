@@ -2,20 +2,20 @@
 
 namespace DummyNamespace;
 
-use App\Dummy;
+use DummyFullModelClass;
 use League\Fractal\TransformerAbstract;
 
-class DummyTransformer extends TransformerAbstract
+class DummyModelClassTransformer extends TransformerAbstract
 {
     /**
      * A Fractal transformer.
      *
-     * @param Dummy $dummyInstance
+     * @param DummyFullModelClass $DummyModelVariable
      *
      * @return array
      */
-    public function transform(Dummy $dummyInstance)
+    public function transform(DummyModelClass $DummyModelVariable)
     {
-        return $dummyInstance->toArray();
+        return $DummyModelVariable->toArray();
     }
 }

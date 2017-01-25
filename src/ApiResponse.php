@@ -1,6 +1,6 @@
 <?php
 
-namespace SdV\Larapi;
+namespace Fab\Larapi;
 
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use Illuminate\Http\JsonResponse;

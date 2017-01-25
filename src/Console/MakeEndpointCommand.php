@@ -1,8 +1,7 @@
 <?php
 
-namespace SdV\Larapi\Console;
+namespace Fab\Larapi\Console;
 
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Console\Command;
 
 class MakeEndpointCommand extends Command
@@ -12,31 +11,17 @@ class MakeEndpointCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'larapi:make:endpoint {name : The name of the endpoint} {version : The api version}';
+    protected $signature = 'larapi:make:endpoint
+                            {name : The name of the endpoint}
+                            {version : The api version}';
+
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new CRUD REST API endpoint';
-    /**
-     * The filesystem instance.
-     *
-     * @var \Illuminate\Filesystem\Filesystem
-     */
-    protected $files;
-    /**
-    * Create a new Endpoint creator command instance.
-    *
-    * @param  \Illuminate\Filesystem\Filesystem  $files
-    * @return void
-    */
-    public function __construct(Filesystem $files)
-    {
-        parent::__construct($files);
+    protected $description = 'Create a new endpoint';
 
-        $this->files = $files;
-    }
     /**
      * Execute the console command.
      *
@@ -68,6 +53,12 @@ class MakeEndpointCommand extends Command
             'version' => $apiVersion
         ]);
 
-        $this->info('CRUD REST API Enpoint created successfully.');
+        $this->info('Endpoint created successfully');
+        $this->info('Add the resource in your routes/api.php file.');
+        $this->info("
+            Route::resource('resources', 'ResourceController', ['except' => [
+                'create', 'edit'
+            ]]);
+        ");
     }
 }
