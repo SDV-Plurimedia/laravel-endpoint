@@ -1,6 +1,6 @@
 <?php
 
-namespace Fab\Larapi\Console;
+namespace Fab\Endpoint\Console;
 
 class MakeControllerCommand extends GeneratorCommand
 {
@@ -9,7 +9,7 @@ class MakeControllerCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $signature = 'larapi:make:controller
+    protected $signature = 'endpoint:make:controller
                             {name : The name of the model}
                             {version : The api version}';
     /**

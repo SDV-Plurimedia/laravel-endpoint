@@ -1,6 +1,6 @@
 <?php
 
-namespace Fab\Larapi\Console;
+namespace Fab\Endpoint\Console;
 
 use Illuminate\Console\Command;
 
@@ -11,7 +11,7 @@ class MakeEndpointCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'larapi:make:endpoint
+    protected $signature = 'endpoint:make:endpoint
                             {name : The name of the endpoint}
                             {version : The api version}';
 
@@ -38,17 +38,17 @@ class MakeEndpointCommand extends Command
         ]);
 
         // Generate a repository.
-        $this->call('larapi:make:repository', [
+        $this->call('endpoint:make:repository', [
             'name' => $name
         ]);
 
         // Generate a transformer.
-        $this->call('larapi:make:transformer', [
+        $this->call('endpoint:make:transformer', [
             'name' => $name
         ]);
 
         // Generate a controller.
-        $this->call('larapi:make:controller', [
+        $this->call('endpoint:make:controller', [
             'name' => $name,
             'version' => $apiVersion
         ]);

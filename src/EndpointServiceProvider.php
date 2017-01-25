@@ -1,10 +1,10 @@
 <?php
 
-namespace Fab\Larapi;
+namespace Fab\Endpoint;
 
 use Illuminate\Support\ServiceProvider;
 
-class LarapiServiceProvider extends ServiceProvider
+class EndpointServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any package services.

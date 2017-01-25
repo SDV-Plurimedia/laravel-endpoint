@@ -1,6 +1,6 @@
 <?php
 
-namespace Fab\Larapi\Console;
+namespace Fab\Endpoint\Console;
 
 class MakeTransformerCommand extends GeneratorCommand
 {
@@ -9,7 +9,7 @@ class MakeTransformerCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $signature = 'larapi:make:transformer {name : The name of the model}';
+    protected $signature = 'endpoint:make:transformer {name : The name of the model}';
 
     /**
      * The console command description.

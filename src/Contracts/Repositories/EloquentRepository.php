@@ -1,6 +1,6 @@
 <?php
 
-namespace Fab\Larapi\Contracts\Repositories;
+namespace Fab\Endpoint\Contracts\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
 

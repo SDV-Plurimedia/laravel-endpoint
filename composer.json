@@ -1,6 +1,6 @@
 {
-    "name": "fabriceclementz/larapi",
-    "description": "Larapi is a CRUD REST API package for Laravel.",
+    "name": "fabriceclementz/laravel-endpoint",
+    "description": "Laravel Endpoint is a CRUD REST API package for Laravel.",
     "keywords": ["laravel", "api", "rest", "search", "scaffolding"],
     "license": "MIT",
     "authors": [
@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Fab\\Larapi\\": "src/"
+            "Fab\\Endpoint\\": "src/"
         }
     },
     "autoload-dev": {

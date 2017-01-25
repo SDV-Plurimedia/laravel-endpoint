@@ -1,8 +1,8 @@
 <?php
 
-namespace Fab\Larapi\Http\Controllers;
+namespace Fab\Endpoint\Http\Controllers;
 
-use Fab\Larapi\ApiResponse;
+use Fab\Endpoint\ApiResponse;
 use App\Http\Controllers\Controller;
 
 class ApiController extends Controller

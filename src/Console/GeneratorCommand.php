@@ -1,6 +1,6 @@
 <?php
 
-namespace Fab\Larapi\Console;
+namespace Fab\Endpoint\Console;
 
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
