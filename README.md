@@ -1,6 +1,6 @@
-# Larapi
+# Laravel Endpoint
 
-Larapi is a CRUD REST API package for Laravel.
+Laravel Endpoint is a CRUD REST API package for Laravel.
 
 This package is currently under development.
 
@@ -13,4 +13,4 @@ This package is currently under development.
 
 ## License
 
-Larapi is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+Laravel Endpoint is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
