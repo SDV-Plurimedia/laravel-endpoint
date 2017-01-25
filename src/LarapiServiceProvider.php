@@ -1,5 +1,6 @@
 <?php
-namespace Fab\Larapi;
+
+namespace SdV\Larapi;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -23,11 +24,17 @@ class LarapiServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 Console\MakeEndpointCommand::class,
+                Console\MakeControllerCommand::class,
+                Console\MakeRepositoryCommand::class,
+                Console\MakeTransformerCommand::class,
             ]);
         }
 
-        $this->app->register(
-            \Spatie\Fractal\FractalServiceProvider::class
-        );
+        $this->registerFractal();
+    }
+
+    protected function registerFractal()
+    {
+        $this->app->register(\Spatie\Fractal\FractalServiceProvider::class);
     }
 }

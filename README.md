@@ -1,4 +1,5 @@
 # Larapi
+
 Larapi is a CRUD REST API package for Laravel.
 
 This package is currently under development.

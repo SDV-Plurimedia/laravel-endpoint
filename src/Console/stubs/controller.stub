@@ -3,26 +3,41 @@
 namespace DummyNamespace;
 
 use App\Dummyy;
+use App\Repositories\DummyyRepository;
 use App\Transformers\DummyyTransformer;
-use App\Http\Controllers\Controller;
-use League\Fractal\Pagination\IlluminatePaginatorAdapter;
+use SdV\Larapi\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 
-class DummyyController extends Controller
+class DummyyController extends ApiController
 {
     /**
-     * Display a listing of the resource.
+     * The DummyyRepository instance.
+     *
+     * @var DummyyRepository
+     */
+    protected $dummyInstances;
+
+    /**
+     * Create a new DummyyController instance.
+     *
+     * @param  DummyyRepository  $dummyInstances
+     * @return void
+     */
+    public function __construct(DummyyRepository $dummyInstances)
+    {
+        $this->dummyInstances = $dummyInstances;
+    }
+
+    /**
+     * Display a paginated listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $paginator = Dummyy::paginate(15);
+        $paginator = $this->dummyInstances->paginate(15);
 
-        return fractal($paginator->getCollection(), new DummyyTransformer())
-            ->paginateWith(new IlluminatePaginatorAdapter($paginator))
-            ->respond();
+        return $this->respondPaginate($paginator, new DummyyTransformer());
     }
 
     /**
@@ -33,12 +48,9 @@ class DummyyController extends Controller
      */
     public function store(Request $request)
     {
-        // Create a new Dummyy instance.
-        $dummyInstance = Dummyy::create($request->all());
+        $dummyInstance = $this->dummyInstances->create($request->all());
 
-        return fractal($dummyInstance, new DummyyTransformer())->respond(function(JsonResponse $response) {
-            $response->setStatusCode(201);
-        });
+        return $this->respondCreated($dummyInstance, new DummyyTransformer());
     }
 
     /**
@@ -49,7 +61,7 @@ class DummyyController extends Controller
      */
     public function show(Dummyy $dummyInstance)
     {
-        return fractal($dummyInstance, new DummyyTransformer())->respond();
+        return $this->respond($dummyInstance, new DummyyTransformer());
     }
 
     /**
@@ -61,11 +73,9 @@ class DummyyController extends Controller
      */
     public function update(Request $request, Dummyy $dummyInstance)
     {
-        // Update the Book instance.
-        $dummyInstance->fill($request->all());
-        $dummyInstance->save();
+        $dummyInstance = $this->dummyInstances->update($dummyInstance, $request->all());
 
-        return fractal($dummyInstance, new DummyyTransformer())->respond();
+        return $this->respond($dummyInstance, new DummyyTransformer());
     }
 
     /**
@@ -76,10 +86,8 @@ class DummyyController extends Controller
      */
     public function destroy(Dummyy $dummyInstance)
     {
-        $dummyInstance->destroy();
+        $this->dummyInstances->delete($dummyInstance);
 
-        return fractal('', new DummyyTransformer())->respond(function(JsonResponse $response) {
-            $response->setStatusCode(204);
-        });
+        return $this->respondNoContent();
     }
 }

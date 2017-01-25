@@ -1,0 +1,21 @@
+<?php
+
+namespace DummyNamespace;
+
+use App\Dummy;
+use League\Fractal\TransformerAbstract;
+
+class DummyTransformer extends TransformerAbstract
+{
+    /**
+     * A Fractal transformer.
+     *
+     * @param Dummy $dummyInstance
+     *
+     * @return array
+     */
+    public function transform(Dummy $dummyInstance)
+    {
+        return $dummyInstance->toArray();
+    }
+}

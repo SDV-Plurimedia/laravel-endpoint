@@ -1,23 +1,23 @@
 {
-    "name": "fab/larapi",
+    "name": "SDV-Plurimedia/larapi",
     "description": "Larapi is a CRUD REST API package for Laravel.",
     "keywords": ["laravel", "api", "rest", "search", "scaffolding"],
     "license": "MIT",
     "authors": [
         {
             "name": "Fabrice Clementz",
-            "email": "fabrice.clementz@gmail.com"
+            "email": "f.clementz@sdv.fr"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Fab\\Larapi\\": "src/"
+            "SdV\\Larapi\\": "src/"
         }
     },
     "require": {
         "php": ">=5.5.0",
-        "illuminate/database": "~5.3",
-        "illuminate/support": "~5.3",
+        "illuminate/database": "~5.4",
+        "illuminate/support": "~5.4",
         "spatie/laravel-fractal": "^3.2"
     },
     "require-dev": {

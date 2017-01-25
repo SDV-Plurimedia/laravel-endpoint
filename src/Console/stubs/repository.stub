@@ -1,0 +1,74 @@
+<?php
+
+namespace DummyNamespace;
+
+use App\Dummyy;
+
+class DummyyRepository
+{
+    /**
+     * Returns a paginator instance.
+     *
+     * @param  int $max Max items to return by page.
+     *
+     * @return [type]      [description]
+     */
+    public function paginate($max)
+    {
+        return Dummyy::paginate($max);
+    }
+
+    /**
+     * Returns a dummyInstance by id.
+     *
+     * @param  int|string $id The id of the dummyInstance.
+     *
+     * @return Dummyy|null
+     */
+    public function find($id)
+    {
+        return Dummyy::where('id', $id)->first();
+    }
+
+    /**
+     * Create a new dummyInstance.
+     *
+     * @param  array  $data The data needed for creation.
+     *
+     * @return Dummyy       The created dummyInstance.
+     */
+    public function create(array $data)
+    {
+        $dummyInstance = Dummyy::create($data);
+
+        return $dummyInstance;
+    }
+
+    /**
+     * Update a dummyInstance.
+     *
+     * @param  Dummyy $dummyInstance The dummyInstance to update.
+     * @param  array  $data          The data to update.
+     *
+     * @return Dummyy                The updated dummyInstance.
+     */
+    public function update(Dummyy $dummyInstance, array $data)
+    {
+        $dummyInstance->fill($data);
+        $dummyInstance->save();
+
+        return $dummyInstance;
+    }
+
+    /**
+     * Delete a model instance.
+     *
+     * @param  Dummyy $dummyInstance The model instance to delete.
+     *
+     * @return void
+     */
+    public function delete(Dummyy $dummyInstance)
+    {
+        $dummyInstance->delete();
+    }
+}
