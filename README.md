@@ -1,5 +1,9 @@
 # Laravel Endpoint
 
+[![Latest Stable Version](https://poser.pugx.org/fabriceclementz/laravel-endpoint/v/stable)](https://packagist.org/packages/fabriceclementz/laravel-endpoint)
+[![License](https://poser.pugx.org/fabriceclementz/laravel-endpoint/license)](https://packagist.org/packages/fabriceclementz/laravel-endpoint)
+[![Total Downloads](https://poser.pugx.org/fabriceclementz/laravel-endpoint/downloads)](https://packagist.org/packages/fabriceclementz/laravel-endpoint)
+
 Laravel Endpoint is a CRUD REST API package for Laravel.
 
 This package is currently under development.
