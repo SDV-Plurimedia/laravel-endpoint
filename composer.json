@@ -21,8 +21,8 @@
     },
     "require": {
         "php": ">=5.5.0",
-        "illuminate/database": "~5.4",
-        "illuminate/support": "~5.4",
+        "illuminate/database": "~5.3",
+        "illuminate/support": "~5.3",
         "spatie/laravel-fractal": "^3.2"
     },
     "require-dev": {
