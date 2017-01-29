@@ -2,7 +2,6 @@
 
 namespace Fab\Endpoint;
 
-use Fab\Endpoint\Contracts\ApiError as ApiErrorContract;
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use Illuminate\Http\JsonResponse;
 
@@ -67,11 +66,9 @@ trait ApiResponse
      * @param  array
      * @return Response
      */
-    public function badRequest(ApiErrorContract $error, array $headers = [])
+    public function badRequest($error, array $headers = [])
     {
-        $error->setStatusCode(400);
-
-        return $this->error($error, $headers);
+        return $this->error($error, 400, $headers);
     }
 
     /**
@@ -81,11 +78,9 @@ trait ApiResponse
      * @param  array
      * @return Response
      */
-    public function unauthorized(ApiErrorContract $error, array $headers = [])
+    public function unauthorized($error, array $headers = [])
     {
-        $error->setStatusCode(401);
-
-        return $this->error($error, $headers);
+        return $this->error($error, 401, $headers);
     }
 
     /**
@@ -95,11 +90,9 @@ trait ApiResponse
      * @param  array
      * @return Response
      */
-    public function notFound(ApiErrorContract $error, array $headers = [])
+    public function notFound($error, array $headers = [])
     {
-        $error->setStatusCode(404);
-
-        return $this->error($error, $headers);
+        return $this->error($error, 404, $headers);
     }
 
     /**
@@ -109,11 +102,9 @@ trait ApiResponse
      * @param  array
      * @return Response
      */
-    public function unprocessableEntity(ApiErrorContract $error, array $headers = [])
+    public function unprocessableEntity($error, array $headers = [])
     {
-        $error->setStatusCode(422);
-
-        return $this->error($error, $headers);
+        return $this->error($error, 422, $headers);
     }
 
     /**
@@ -123,11 +114,9 @@ trait ApiResponse
      * @param  array
      * @return Response
      */
-    public function tooManyRequests(ApiErrorContract $error, array $headers = [])
+    public function tooManyRequests($error, array $headers = [])
     {
-        $error->setStatusCode(429);
-
-        return $this->error($error, $headers);
+        return $this->error($error, 429, $headers);
     }
 
     /**
@@ -137,11 +126,9 @@ trait ApiResponse
      * @param  array
      * @return Response
      */
-    public function serverError(ApiErrorContract $error, array $headers = [])
+    public function serverError($error, array $headers = [])
     {
-        $error->setStatusCode(500);
-
-        return $this->error($error, $headers);
+        return $this->error($error, 500, $headers);
     }
 
     /**
@@ -151,10 +138,8 @@ trait ApiResponse
      * @param  array
      * @return Response
      */
-    public function error(ApiErrorContract $error, array $headers = [])
+    public function error($error, $statusCode = 500, array $headers = [])
     {
-        return (new JsonResponse($error->format()))
-            ->setStatusCode($error->statusCode())
-            ->withHeaders($headers);
+        return (new JsonResponse($error))->setStatusCode($statusCode)->withHeaders($headers);
     }
 }

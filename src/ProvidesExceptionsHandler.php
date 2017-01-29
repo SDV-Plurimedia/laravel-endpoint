@@ -4,7 +4,6 @@ namespace Fab\Endpoint;
 
 use Exception;
 use Fab\Endpoint\ApiResponse;
-use Fab\Endpoint\ApiError;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -19,22 +18,41 @@ trait ProvidesExceptionsHandler
     {
         if ($exception instanceof ModelNotFoundException) {
             $model = class_basename($exception->getModel());
-            return $this->notFound(new ApiError($model.' not found.'));
+            return $this->notFound([
+                'error' => [
+                    'message' => $model.' not found.',
+                ]
+            ]);
         }
         if ($exception instanceof NotFoundHttpException) {
-            return $this->notFound(new ApiError('Route not found ('.$request->method().': '.$request->path().')'));
+            return $this->notFound([
+                'error' => [
+                    'message' => 'Route not found ('.$request->method().': '.$request->path().').',
+                ]
+            ]);
         }
         if ($exception instanceof MethodNotAllowedHttpException) {
-            $error = new ApiError('Unrecognized request URL ('.$request->method().': '.$request->path().')');
-            return $this->notFound($error);
+            return $this->notFound([
+                'error' => [
+                    'message' => 'Unrecognized request URL ('.$request->method().': '.$request->path().').',
+                ]
+            ]);
         }
         if ($exception instanceof ValidationException) {
             $messages = $exception->validator->errors()->getMessages();
-            $error = (new ApiError('Unprocessable Entity'))->setData($messages);
-            return $this->unprocessableEntity($error);
+            return $this->unprocessableEntity([
+                'error' => [
+                    'message' => 'Unprocessable Entity.',
+                    'errors' => $messages,
+                ]
+            ]);
         }
 
-        return $this->serverError(new ApiError('Internal Server Error'));
+        return $this->serverError([
+            'error' => [
+                'message' => 'Internal Server Error',
+            ]
+        ]);
     }
 
     /**
