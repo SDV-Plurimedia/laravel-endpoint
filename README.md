@@ -9,7 +9,7 @@ Laravel Endpoint is a CRUD REST API package for Laravel.
 ## Features
 
 - [X] REST CRUD Endpoint scaffolding
-- [ ] Normalized JSON Response using [laravel-fractal](https://github.com/spatie/laravel-fractal)
+- [X] Normalized JSON Response using [laravel-fractal](https://github.com/spatie/laravel-fractal)
 - [ ] [Elasticsearch](https://www.elastic.co/products/elasticsearch) / [Algolia](https://www.algolia.com/) search
 - [ ] Api Documentation ([Swagger](http://swagger.io/swagger-ui/), [API Blueprint](https://apiblueprint.org/))
 
@@ -34,6 +34,14 @@ Register the service provider.
 Replace the render method in ```app/Exceptions/Handler.php```.
 
 ```
+use SdV\Endpoint\ProvidesExceptionsHandler;
+
+class Handler extends ExceptionHandler
+{
+    use ProvidesExceptionsHandler;
+
+    ...
+
     /**
      * Render an exception into an HTTP response.
      *
@@ -49,7 +57,49 @@ Replace the render method in ```app/Exceptions/Handler.php```.
 
         return parent::render($request, $exception);
     }
+    
+    ...
+}
 ```
+
+## Commands Usage
+
+### Create a new endpoint
+
+```
+php artisan endpoint:make:endpoint Post v1
+```
+
+This will create all this files.
+
+- app/Post.php
+- app/Repositories/PostRepository.php
+- app/Transformers/PostTransformer.php
+- app/Http/Controllers/Api/V1/PostController.php
+
+### Create a new controller class.
+
+```
+php artisan endpoint:make:controller Post v1
+```
+
+This will create the file ```app/Http/Controllers/Api/V1/PostController.php``` and insert the minimum boilerplate.
+
+###  Create a new repository class.
+
+```
+php artisan endpoint:make:repository Post
+```
+
+This will create the file ```app/Repositories/PostRepository.php``` and insert the minimum boilerplate.
+
+### Create a new transformer class.
+
+```
+php artisan endpoint:make:transformer Post
+```
+
+This will create the file ```app/Transformers/PostTransformer.php``` and insert the minimum boilerplate.
 
 ## License
 
