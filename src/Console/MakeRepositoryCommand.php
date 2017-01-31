@@ -1,6 +1,6 @@
 <?php
 
-namespace Fab\Endpoint\Console;
+namespace SdV\Endpoint\Console;
 
 class MakeRepositoryCommand extends GeneratorCommand
 {

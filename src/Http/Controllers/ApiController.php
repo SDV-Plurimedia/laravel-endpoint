@@ -1,8 +1,8 @@
 <?php
 
-namespace Fab\Endpoint\Http\Controllers;
+namespace SdV\Endpoint\Http\Controllers;
 
-use Fab\Endpoint\ApiResponse;
+use SdV\Endpoint\ApiResponse;
 use App\Http\Controllers\Controller;
 
 class ApiController extends Controller

@@ -1,16 +1,14 @@
 # Laravel Endpoint
 
-[![Latest Stable Version](https://poser.pugx.org/fabriceclementz/laravel-endpoint/v/stable)](https://packagist.org/packages/fabriceclementz/laravel-endpoint)
-[![License](https://poser.pugx.org/fabriceclementz/laravel-endpoint/license)](https://packagist.org/packages/fabriceclementz/laravel-endpoint)
-[![Total Downloads](https://poser.pugx.org/fabriceclementz/laravel-endpoint/downloads)](https://packagist.org/packages/fabriceclementz/laravel-endpoint)
+[![Latest Stable Version](https://poser.pugx.org/sdv/laravel-endpoint/v/stable)](https://packagist.org/packages/sdv/laravel-endpoint)
+[![License](https://poser.pugx.org/sdv/laravel-endpoint/license)](https://packagist.org/packages/sdv/laravel-endpoint)
+[![Total Downloads](https://poser.pugx.org/sdv/laravel-endpoint/downloads)](https://packagist.org/packages/sdv/laravel-endpoint)
 
 Laravel Endpoint is a CRUD REST API package for Laravel.
 
-This package is currently under development.
-
 ## Features
 
-- [ ] REST CRUD Endpoint scaffolding
+- [X] REST CRUD Endpoint scaffolding
 - [ ] Normalized JSON Response using [laravel-fractal](https://github.com/spatie/laravel-fractal)
 - [ ] [Elasticsearch](https://www.elastic.co/products/elasticsearch) / [Algolia](https://www.algolia.com/) search
 - [ ] Api Documentation ([Swagger](http://swagger.io/swagger-ui/), [API Blueprint](https://apiblueprint.org/))
@@ -20,7 +18,7 @@ This package is currently under development.
 You can pull in the package via composer:
 
 ```
-$ composer require fabriceclementz/laravel-endpoint
+$ composer require sdv/laravel-endpoint
 ```
 
 Register the service provider.
@@ -29,7 +27,7 @@ Register the service provider.
 // config/app.php
 'providers' => [
     ...
-    Fab\Endpoint\EndpointServiceProvider::class,
+    SdV\Endpoint\EndpointServiceProvider::class,
 ]
 ```
 

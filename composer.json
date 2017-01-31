@@ -1,17 +1,17 @@
 {
-    "name": "fabriceclementz/laravel-endpoint",
+    "name": "sdv/laravel-endpoint",
     "description": "Laravel Endpoint is a CRUD REST API package for Laravel.",
     "keywords": ["laravel", "api", "rest", "search", "scaffolding"],
     "license": "MIT",
     "authors": [
         {
             "name": "Fabrice Clementz",
-            "email": "fabrice.clementz@gmail.com"
+            "email": "f.clementz@sdv.fr"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Fab\\Endpoint\\": "src/"
+            "SdV\\Endpoint\\": "src/"
         }
     },
     "autoload-dev": {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Fab\Endpoint;
+namespace SdV\Endpoint;
 
 use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use Illuminate\Http\JsonResponse;

@@ -5,7 +5,7 @@ namespace DummyNamespace;
 use DummyFullModelClass;
 use DummyRootNamespaceRepositories\DummyModelClassRepository;
 use DummyRootNamespaceTransformers\DummyModelClassTransformer;
-use Fab\Endpoint\Http\Controllers\ApiController;
+use SdV\Endpoint\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 
 class DummyModelClassController extends ApiController

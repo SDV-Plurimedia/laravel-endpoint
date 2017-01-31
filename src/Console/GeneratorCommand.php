@@ -1,6 +1,6 @@
 <?php
 
-namespace Fab\Endpoint\Console;
+namespace SdV\Endpoint\Console;
 
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;

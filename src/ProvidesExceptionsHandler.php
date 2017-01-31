@@ -1,9 +1,9 @@
 <?php
 
-namespace Fab\Endpoint;
+namespace SdV\Endpoint;
 
 use Exception;
-use Fab\Endpoint\ApiResponse;
+use SdV\Endpoint\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;

@@ -3,7 +3,7 @@
 namespace DummyNamespace;
 
 use DummyFullModelClass;
-use Fab\Endpoint\Contracts\Repositories\EloquentRepository as RepositoryContract;
+use SdV\Endpoint\Contracts\Repositories\EloquentRepository as RepositoryContract;
 
 class DummyModelClassRepository implements RepositoryContract
 {
