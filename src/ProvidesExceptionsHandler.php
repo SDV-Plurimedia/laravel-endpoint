@@ -20,37 +20,51 @@ trait ProvidesExceptionsHandler
             $model = class_basename($exception->getModel());
             return $this->notFound([
                 'error' => [
-                    'message' => $model.' not found.',
+                    'status' => '404',
+                    'title' => $model.' not found.',
                 ]
             ]);
         }
         if ($exception instanceof NotFoundHttpException) {
             return $this->notFound([
                 'error' => [
-                    'message' => 'Route not found ('.$request->method().': '.$request->path().').',
+                    'status' => '404',
+                    'title' => 'Route not found ('.$request->method().': '.$request->path().').',
                 ]
             ]);
         }
         if ($exception instanceof MethodNotAllowedHttpException) {
             return $this->notFound([
                 'error' => [
-                    'message' => 'Unrecognized request URL ('.$request->method().': '.$request->path().').',
+                    'status' => '404',
+                    'title' => 'Unrecognized request URL ('.$request->method().': '.$request->path().').',
                 ]
             ]);
         }
         if ($exception instanceof ValidationException) {
             $messages = $exception->validator->errors()->getMessages();
+
+            $formattedErrors = [];
+            foreach ($messages as $field => $error) {
+                $formattedErrors[] = [
+                    'field' => $field,
+                    'details' => $error,
+                ];
+            }
+
             return $this->unprocessableEntity([
                 'error' => [
-                    'message' => 'Unprocessable Entity.',
-                    'errors' => $messages,
+                    'status' => '422',
+                    'title' => 'Missing or invalid parameters.',
+                    'messages' => $formattedErrors,
                 ]
             ]);
         }
 
         return $this->serverError([
             'error' => [
-                'message' => 'Internal Server Error',
+                'status' => '500',
+                'title' => 'Internal Server Error',
             ]
         ]);
     }
