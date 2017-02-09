@@ -79,7 +79,7 @@ class DummyModelClassRepository
      * @param  string $satisfy
      * @return Builder
      */
-    public function withFilters($filters, $satisfy = 'all', $sort)
+    public function withFilters($filters, $satisfy = 'all', $sort = null)
     {
         return DummyModelClass::filter($filters, $satisfy, $sort);
     }
