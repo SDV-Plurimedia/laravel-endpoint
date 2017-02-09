@@ -3,9 +3,8 @@
 namespace DummyNamespace;
 
 use DummyFullModelClass;
-use SdV\Endpoint\Contracts\Repositories\EloquentRepository as RepositoryContract;
 
-class DummyModelClassRepository implements RepositoryContract
+class DummyModelClassRepository
 {
     /**
      * Returns a paginator instance.
@@ -71,5 +70,17 @@ class DummyModelClassRepository implements RepositoryContract
     public function delete($DummyModelVariable)
     {
         $DummyModelVariable->delete();
+    }
+
+    /**
+     * Returns an eloquent filtered query builder.
+     *
+     * @param  string|null $filters The filter query string.
+     * @param  string $satisfy
+     * @return Builder
+     */
+    public function withFilters($filters, $satisfy = 'all', $sort)
+    {
+        return DummyModelClass::filter($filters, $satisfy, $sort);
     }
 }

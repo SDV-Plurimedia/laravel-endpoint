@@ -1,0 +1,20 @@
+<?php
+
+namespace DummyNamespace;
+
+use SdV\Endpoint\Filtrable;
+use Illuminate\Database\Eloquent\Model;
+
+class DummyModelClass extends Model
+{
+    use Filtrable;
+
+    protected $guarded = [];
+
+    /**
+     * The attributes that aren't filtrable.
+     *
+     * @var array
+     */
+    protected static $unfiltrable = [];
+}

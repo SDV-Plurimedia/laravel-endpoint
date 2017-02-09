@@ -10,6 +10,7 @@ Laravel Endpoint is a CRUD REST API package for Laravel.
 
 - [X] REST CRUD Endpoint scaffolding
 - [X] Normalized JSON Response using [laravel-fractal](https://github.com/spatie/laravel-fractal)
+- [X] Simple filtering operations
 - [ ] [Elasticsearch](https://www.elastic.co/products/elasticsearch) / [Algolia](https://www.algolia.com/) search
 - [ ] Api Documentation ([Swagger](http://swagger.io/swagger-ui/), [API Blueprint](https://apiblueprint.org/))
 
@@ -67,7 +68,7 @@ class Handler extends ExceptionHandler
 ### Create a new endpoint
 
 ```
-php artisan endpoint:make:endpoint Post v1
+php artisan endpoint:make:all Post v1
 ```
 
 This will create all this files.
@@ -76,6 +77,14 @@ This will create all this files.
 - app/Repositories/PostRepository.php
 - app/Transformers/PostTransformer.php
 - app/Http/Controllers/Api/V1/PostController.php
+
+### Create a new model class.
+
+```
+php artisan endpoint:make:model Post
+```
+
+This will create the file ```app/Post.php``` and insert the minimum boilerplate with filtrable trait.
 
 ### Create a new controller class.
 
@@ -100,6 +109,52 @@ php artisan endpoint:make:transformer Post
 ```
 
 This will create the file ```app/Transformers/PostTransformer.php``` and insert the minimum boilerplate.
+
+## API Usage
+
+### Pagination
+
+#### Change the selected page
+
+```
+/api/v1/topics?page=2 
+```
+
+#### Change the number of items per page
+
+```
+/api/v1/topics?per_page=50 
+```
+
+### Filters
+
+The ```and``` filter is applied by default.
+
+#### And Filter
+
+```
+/api/v1/topics?filter[]=name,eq,laravel&filter[]=name,eq,eloquent&satisfy=all
+```
+
+#### Or Filter
+
+```
+/api/v1/topics?filter[]=name,eq,laravel&filter[]=name,eq,eloquent&satisfy=any
+```
+
+### Sort
+
+```
+/api/v1/topics?sort=name
+```
+
+```
+/api/v1/topics?sort=-name
+```
+
+```
+/api/v1/topics?sort=-slug,name
+```
 
 ## License
 

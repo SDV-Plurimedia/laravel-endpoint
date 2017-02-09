@@ -11,7 +11,7 @@ class MakeEndpointCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'endpoint:make:endpoint
+    protected $signature = 'endpoint:make:all
                             {name : The name of the endpoint}
                             {version : The api version}';
 
@@ -20,7 +20,7 @@ class MakeEndpointCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Create a new endpoint';
+    protected $description = 'Create a new endpoint. (Model, Repository, Transformer, Controller)';
 
     /**
      * Execute the console command.
@@ -33,7 +33,7 @@ class MakeEndpointCommand extends Command
         $apiVersion = strtoupper($this->argument('version'));
 
         // Generate a model.
-        $this->call('make:model', [
+        $this->call('endpoint:make:model', [
             'name' => $name
         ]);
 

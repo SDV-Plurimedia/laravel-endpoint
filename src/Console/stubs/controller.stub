@@ -35,7 +35,14 @@ class DummyModelClassController extends ApiController
      */
     public function index()
     {
-        $paginator = $this->DummyModelVariables->paginate(15);
+        $perPage = request('per_page', 15);
+
+        $traits = class_uses(DummyModelClass::class);
+        if (in_array('SdV\Endpoint\Filtrable', $traits)) {
+            $paginator = $this->DummyModelVariables->withFilters(request('filter'), request('satisfy'), request('sort'))->paginate($perPage);
+        } else {
+            $paginator = $this->DummyModelVariables->paginate($perPage);
+        }
 
         return $this->respondPaginate($paginator, new DummyModelClassTransformer());
     }

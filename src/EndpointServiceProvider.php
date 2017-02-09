@@ -27,6 +27,7 @@ class EndpointServiceProvider extends ServiceProvider
                 Console\MakeControllerCommand::class,
                 Console\MakeRepositoryCommand::class,
                 Console\MakeTransformerCommand::class,
+                Console\MakeModelCommand::class,
             ]);
         }
 
