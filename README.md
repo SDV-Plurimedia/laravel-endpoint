@@ -78,6 +78,17 @@ This will create all this files.
 - app/Transformers/PostTransformer.php
 - app/Http/Controllers/Api/V1/PostController.php
 
+Then, you need to register your api routes.
+
+```
+// routes/api.php
+Route::group(['namespace' => 'Api\V1', 'prefix' => 'v1'], function () {
+    Route::resource('posts', 'PostController', ['except' => [
+        'create', 'edit'
+    ]]);
+});
+```
+
 ### Create a new model class.
 
 ```
