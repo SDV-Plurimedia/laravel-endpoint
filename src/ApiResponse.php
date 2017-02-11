@@ -16,13 +16,10 @@ trait ApiResponse
      */
     public function respondPaginate($paginator, $tranformer)
     {
-        $fractal = fractal($paginator->getCollection(), $tranformer)
-            ->paginateWith(new IlluminatePaginatorAdapter($paginator));
-
-        if (isset($_GET['include'])) {
-            $fractal->parseIncludes($_GET['include']);
-        }
-        return $fractal->respond();
+        return fractal($paginator->getCollection(), $tranformer)
+            ->paginateWith(new IlluminatePaginatorAdapter($paginator))
+            ->parseIncludes(request('include', []))
+            ->respond();
     }
 
     /**
@@ -34,11 +31,9 @@ trait ApiResponse
      */
     public function respond($model, $transformer)
     {
-        $fractal = fractal($model, $transformer);
-        if (isset($_GET['include'])) {
-            $fractal->parseIncludes($_GET['include']);
-        }
-        return $fractal->respond();
+        return fractal($model, $transformer)
+            ->parseIncludes(request('include', []))
+            ->respond();
     }
 
     /**

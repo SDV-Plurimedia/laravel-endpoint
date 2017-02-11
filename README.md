@@ -156,13 +156,14 @@ The ```and``` filter is applied by default.
 /api/v1/topics?sort=-slug,name
 ```
 
-### Inclusions
+### Includes
 
-update your transformer to add your inclusions rules, according to fractal docs (http://fractal.thephpleague.com/transformers/)
+Update your transformer to add your include rules, according to fractal docs (http://fractal.thephpleague.com/transformers/)
 
-then you can include related models on your calls
+Then you can include related models on your calls
+
 ```
-/api/v1/topics?include=elements,columns
+/api/v1/topics?include=posts,posts.author
 ```
 
 ## License
