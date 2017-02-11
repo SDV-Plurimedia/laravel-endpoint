@@ -58,7 +58,7 @@ class Handler extends ExceptionHandler
 
         return parent::render($request, $exception);
     }
-    
+
     ...
 }
 ```
@@ -117,13 +117,13 @@ This will create the file ```app/Transformers/PostTransformer.php``` and insert 
 #### Change the selected page
 
 ```
-/api/v1/topics?page=2 
+/api/v1/topics?page=2
 ```
 
 #### Change the number of items per page
 
 ```
-/api/v1/topics?per_page=50 
+/api/v1/topics?per_page=50
 ```
 
 ### Filters
@@ -154,6 +154,15 @@ The ```and``` filter is applied by default.
 
 ```
 /api/v1/topics?sort=-slug,name
+```
+
+### Inclusions
+
+update your transformer to add your inclusions rules, according to fractal docs (http://fractal.thephpleague.com/transformers/)
+
+then you can include related models on your calls
+```
+/api/v1/topics?includes=elements,columns
 ```
 
 ## License
