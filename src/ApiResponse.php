@@ -16,7 +16,7 @@ trait ApiResponse
      */
     public function respondPaginate($paginator, $tranformer)
     {
-        $fractal fractal($paginator->getCollection(), $tranformer)
+        $fractal = fractal($paginator->getCollection(), $tranformer)
             ->paginateWith(new IlluminatePaginatorAdapter($paginator));
 
         if (isset($_GET['include'])) {
