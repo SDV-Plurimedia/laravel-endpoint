@@ -65,6 +65,7 @@ trait ProvidesExceptionsHandler
             'error' => [
                 'status' => '500',
                 'title' => 'Internal Server Error',
+                'detail' => $exception->getMessage(),
             ]
         ]);
     }
