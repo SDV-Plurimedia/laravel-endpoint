@@ -162,7 +162,7 @@ update your transformer to add your inclusions rules, according to fractal docs 
 
 then you can include related models on your calls
 ```
-/api/v1/topics?includes=elements,columns
+/api/v1/topics?include=elements,columns
 ```
 
 ## License
