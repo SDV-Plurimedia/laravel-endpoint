@@ -9,7 +9,7 @@ before_script:
   - composer install
 
 script:
-  - vendor/bin/phpunit --testdox --coverage-text --coverage-clover coverage.clover
+  - vendor/bin/phpunit --testdox
 
 branches:
   only:
