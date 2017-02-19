@@ -16,5 +16,5 @@ class DummyModelClass extends Model
      *
      * @var array
      */
-    protected static $unfiltrable = [];
+    protected $filtrable = [];
 }

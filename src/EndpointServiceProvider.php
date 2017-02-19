@@ -14,6 +14,7 @@ class EndpointServiceProvider extends ServiceProvider
     public function boot()
     {
     }
+
     /**
      * Register any package services.
      *
