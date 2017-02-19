@@ -3,6 +3,8 @@
 [![Latest Stable Version](https://poser.pugx.org/sdv/laravel-endpoint/v/stable)](https://packagist.org/packages/sdv/laravel-endpoint)
 [![License](https://poser.pugx.org/sdv/laravel-endpoint/license)](https://packagist.org/packages/sdv/laravel-endpoint)
 [![Total Downloads](https://poser.pugx.org/sdv/laravel-endpoint/downloads)](https://packagist.org/packages/sdv/laravel-endpoint)
+[![Build Status](https://travis-ci.org/SDV-Plurimedia/laravel-endpoint.svg?branch=master)](https://travis-ci.org/SDV-Plurimedia/laravel-endpoint)
+
 
 Laravel Endpoint is a CRUD REST API package for Laravel.
 
