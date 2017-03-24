@@ -10,7 +10,8 @@ class MakeModelCommand extends GeneratorCommand
      * @var string
      */
     protected $signature = 'endpoint:make:model
-                            {name : The name of the model}';
+                            {name : The name of the model}
+                            {--mongo : Generate a Laravel MongoDB Model (https://github.com/jenssegers/laravel-mongodb)}';
     /**
      * The console command description.
      *
@@ -32,6 +33,10 @@ class MakeModelCommand extends GeneratorCommand
      */
     protected function getStub()
     {
+        if ($this->option('mongo')) {
+            return __DIR__.'/stubs/model-mongodb.stub';
+        }
+
         return __DIR__.'/stubs/model.stub';
     }
 

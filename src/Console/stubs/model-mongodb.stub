@@ -1,0 +1,20 @@
+<?php
+
+namespace DummyNamespace;
+
+use SdV\Endpoint\Filtrable;
+use Jenssegers\Mongodb\Eloquent\Model;
+
+class DummyModelClass extends Model
+{
+    use Filtrable;
+
+    protected $guarded = [];
+
+    /**
+     * The attributes that aren't filtrable.
+     *
+     * @var array
+     */
+    protected $filtrable = [];
+}

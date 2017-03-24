@@ -13,7 +13,8 @@ class MakeEndpointCommand extends Command
      */
     protected $signature = 'endpoint:make:all
                             {name : The name of the endpoint}
-                            {version : The api version}';
+                            {version : The api version}
+                            {--mongo : Generate a Laravel MongoDB Model (https://github.com/jenssegers/laravel-mongodb)}';
 
     /**
      * The console command description.
@@ -29,36 +30,66 @@ class MakeEndpointCommand extends Command
      */
     public function fire()
     {
-        $name = trim($this->argument('name'));
-        $apiVersion = strtoupper($this->argument('version'));
+        $name = $this->model();
 
         // Generate a model.
         $this->call('endpoint:make:model', [
-            'name' => $name
+            'name' => $name,
+            '--mongo' => $this->option('mongo'),
         ]);
 
         // Generate a repository.
         $this->call('endpoint:make:repository', [
-            'name' => $name
+            'name' => $name,
         ]);
 
         // Generate a transformer.
         $this->call('endpoint:make:transformer', [
-            'name' => $name
+            'name' => $name,
         ]);
 
         // Generate a controller.
         $this->call('endpoint:make:controller', [
             'name' => $name,
-            'version' => $apiVersion
+            'version' => $this->apiVersion(),
         ]);
 
         $this->info('Endpoint created successfully');
         $this->info('Add the resource in your routes/api.php file.');
         $this->info("
-            Route::resource('resources', 'ResourceController', ['except' => [
+            Route::resource('".$this->resource()."', '".$name."Controller', ['except' => [
                 'create', 'edit'
             ]]);
         ");
+    }
+
+    /**
+     * Returns the endpoint name.
+     *
+     * @return string
+     */
+    private function resource()
+    {
+        return str_plural(kebab_case(trim($this->argument('name'))));
+    }
+
+    /**
+     * Returns the model name.
+     *
+     * @return string
+     */
+    private function model()
+    {
+        return trim($this->argument('name'));
+    }
+
+    /**
+     * Returns the api version.
+     *
+     * @return string
+     */
+    private function apiVersion()
+    {
+        return strtoupper($this->argument('version'));
     }
 }

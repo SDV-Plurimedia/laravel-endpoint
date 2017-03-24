@@ -13,8 +13,8 @@ Laravel Endpoint is a CRUD REST API package for Laravel.
 - [X] REST CRUD Endpoint scaffolding
 - [X] Normalized JSON Response using [laravel-fractal](https://github.com/spatie/laravel-fractal)
 - [X] Simple filtering operations
-- [] Ability to customize fractal serializer
-- [] Ability to customize filtering and sorting strategies
+- [ ] Ability to customize fractal serializer
+- [ ] Ability to customize filtering and sorting strategies
 - [ ] [Elasticsearch](https://www.elastic.co/products/elasticsearch) / [Algolia](https://www.algolia.com/) search
 - [ ] Api Documentation ([Swagger](http://swagger.io/swagger-ui/), [API Blueprint](https://apiblueprint.org/))
 
@@ -65,6 +65,12 @@ class Handler extends ExceptionHandler
 
     ...
 }
+```
+
+## Testing
+
+```
+composer test
 ```
 
 ## Commands Usage
