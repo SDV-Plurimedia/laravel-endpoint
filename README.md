@@ -81,6 +81,10 @@ composer test
 php artisan endpoint:make:all Post v1
 ```
 
+Optionnaly, you can add the --mongo flag to generate a Laravel-MongoDB compatible Model.
+
+(You need to install https://github.com/jenssegers/laravel-mongodb in your app)
+
 This will create all this files.
 
 - app/Post.php
@@ -106,6 +110,8 @@ php artisan endpoint:make:model Post
 ```
 
 This will create the file ```app/Post.php``` and insert the minimum boilerplate with filtrable trait.
+
+Optionnaly, you can add the --mongo flag to generate a Laravel-MongoDB compatible Model.
 
 ### Create a new controller class.
 
