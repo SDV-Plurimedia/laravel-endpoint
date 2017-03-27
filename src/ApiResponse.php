@@ -87,6 +87,18 @@ trait ApiResponse
     }
 
     /**
+     * Access forbidde,.
+     *
+     * @param  array
+     * @param  array
+     * @return Response
+     */
+    public function forbidden($error, array $headers = [])
+    {
+        return $this->error($error, 403, $headers);
+    }
+
+    /**
      * The requested resource doesn't exist.
      *
      * @param  array

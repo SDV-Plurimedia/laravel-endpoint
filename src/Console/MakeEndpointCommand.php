@@ -75,7 +75,7 @@ class MakeEndpointCommand extends Command
      */
     private function resource()
     {
-        return str_plural(kebab_case(trim($this->argument('name'))));
+        return str_plural(str_slug(trim($this->argument('name'))));
     }
 
     /**
