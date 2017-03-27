@@ -2,9 +2,9 @@
 
 namespace DummyNamespace;
 
-use DummyFullModelClass;
-use DummyRootNamespaceRepositories\DummyModelClassRepository;
-use DummyRootNamespaceTransformers\DummyModelClassTransformer;
+use DummyRootNamespace\DummyModelClassModule;
+use DummyRootNamespace\Repositories\DummyModelClassRepository;
+use DummyRootNamespace\Transformers\DummyModelClassTransformer;
 use SdV\Endpoint\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 
@@ -58,7 +58,7 @@ class DummyModelClassController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  DummyFullModelClass  $DummyModelVariable
+     * @param  DummyRootNamespace\DummyModelClassModule  $DummyModelVariable
      * @return \Illuminate\Http\Response
      */
     public function show(DummyModelClass $DummyModelVariable)
@@ -70,7 +70,7 @@ class DummyModelClassController extends ApiController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  DummyFullModelClass  $dummyInstance
+     * @param  DummyRootNamespace\DummyModelClassModule  $DummyModelVariable
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, DummyModelClass $DummyModelVariable)
@@ -83,7 +83,7 @@ class DummyModelClassController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  DummyFullModelClass  $DummyModelVariable
+     * @param  DummyRootNamespace\DummyModelClassModule  $DummyModelVariable
      * @return \Illuminate\Http\Response
      */
     public function destroy(DummyModelClass $DummyModelVariable)

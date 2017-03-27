@@ -2,7 +2,7 @@
 
 namespace DummyNamespace;
 
-use DummyFullModelClass;
+use DummyRootNamespace\DummyModelClassModule;
 use League\Fractal\TransformerAbstract;
 
 class DummyModelClassTransformer extends TransformerAbstract
@@ -10,7 +10,7 @@ class DummyModelClassTransformer extends TransformerAbstract
     /**
      * A Fractal transformer.
      *
-     * @param DummyFullModelClass $DummyModelVariable
+     * @param DummyRootNamespace\DummyModelClassModule $DummyModelVariable
      *
      * @return array
      */

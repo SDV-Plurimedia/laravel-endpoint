@@ -14,7 +14,8 @@ class MakeEndpointCommand extends Command
     protected $signature = 'endpoint:make:all
                             {name : The name of the endpoint}
                             {version : The api version}
-                            {--mongo : Generate a Laravel MongoDB Model (https://github.com/jenssegers/laravel-mongodb)}';
+                            {--mongo : Generate a Laravel MongoDB Model (https://github.com/jenssegers/laravel-mongodb)}
+                            {--module= : Generate under a namespace}';
 
     /**
      * The console command description.
@@ -36,22 +37,26 @@ class MakeEndpointCommand extends Command
         $this->call('endpoint:make:model', [
             'name' => $name,
             '--mongo' => $this->option('mongo'),
+            '--module' => $this->option('module'),
         ]);
 
         // Generate a repository.
         $this->call('endpoint:make:repository', [
             'name' => $name,
+            '--module' => $this->option('module'),
         ]);
 
         // Generate a transformer.
         $this->call('endpoint:make:transformer', [
             'name' => $name,
+            '--module' => $this->option('module'),
         ]);
 
         // Generate a controller.
         $this->call('endpoint:make:controller', [
             'name' => $name,
             'version' => $this->apiVersion(),
+            '--module' => $this->option('module'),
         ]);
 
         $this->info('Endpoint created successfully');

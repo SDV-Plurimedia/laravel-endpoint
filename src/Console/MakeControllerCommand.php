@@ -11,7 +11,8 @@ class MakeControllerCommand extends GeneratorCommand
      */
     protected $signature = 'endpoint:make:controller
                             {name : The name of the model}
-                            {version : The api version}';
+                            {version : The api version}
+                            {--module= : Generate under a namespace}';
     /**
      * The console command description.
      *
@@ -37,18 +38,22 @@ class MakeControllerCommand extends GeneratorCommand
     }
 
     /**
-     * Get the default namespace for the class.
+     * Get the default Type namespace.
      *
-     * @param  string  $rootNamespace
      * @return string
      */
-    protected function getDefaultNamespace($rootNamespace)
+    protected function getTypeNamespace()
     {
         $apiVersion = $this->getApiVersionInput();
 
-        return $rootNamespace.'\Http\Controllers\Api\\'.$apiVersion;
+        return 'Http\Controllers\Api\\'.$apiVersion;
     }
 
+    /**
+     * Get the api version.
+     *
+     * @return string
+     */
     protected function getApiVersionInput()
     {
         return strtoupper(trim($this->argument('version')));

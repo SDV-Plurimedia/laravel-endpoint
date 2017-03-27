@@ -100,7 +100,25 @@ abstract class GeneratorCommand extends Command
      */
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace;
+        if (empty($this->getTypeNamespace())) {
+            return $rootNamespace;
+        }
+
+        if ($this->option('module')) {
+            return $rootNamespace;
+        }
+
+        return $rootNamespace.'\\'.$this->getTypeNamespace();
+    }
+
+    /**
+     * Get the default Type namespace.
+     *
+     * @return string
+     */
+    protected function getTypeNamespace()
+    {
+        return str_plural($this->type);
     }
 
     /**
@@ -165,7 +183,12 @@ abstract class GeneratorCommand extends Command
     {
         $stub = str_replace(
             ['DummyNamespace', 'DummyRootNamespace'],
-            [$this->getNamespace($name), $this->rootNamespace()],
+            [
+                $this->getNamespace($name),
+                $this->option('module')
+                    ? $this->rootNamespace() . $this->moduleNamespace()
+                    : substr($this->rootNamespace(), 0, -1),
+            ],
             $stub
         );
 
@@ -196,6 +219,7 @@ abstract class GeneratorCommand extends Command
 
         $replace = [
             'DummyFullModelClass' => $this->rootNamespace().$class,
+            'DummyModelClassModule' => $this->option('module') ? "Models\\".class_basename($class) : class_basename($class),
             'DummyModelClass' => class_basename($class),
             'DummyModelVariable' => lcfirst(class_basename($class)),
         ];
@@ -212,7 +236,15 @@ abstract class GeneratorCommand extends Command
      */
     protected function getNameInput()
     {
-        return trim($this->argument('name'));
+        $name = trim($this->argument('name'));
+
+        if ($this->option('module')) {
+            $moduleNamespace = $this->moduleNamespace();
+
+            $name = $moduleNamespace . '\\' . $this->getTypeNamespace() . '\\' . $name;
+        }
+
+        return $name;
     }
 
     /**
@@ -223,6 +255,16 @@ abstract class GeneratorCommand extends Command
     protected function rootNamespace()
     {
         return $this->laravel->getNamespace();
+    }
+
+    /**
+     * Get the module namespace.
+     *
+     * @return string
+     */
+    protected function moduleNamespace()
+    {
+        return trim($this->option('module'));
     }
 
     /**

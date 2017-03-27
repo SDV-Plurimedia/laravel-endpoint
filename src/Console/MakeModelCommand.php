@@ -11,7 +11,8 @@ class MakeModelCommand extends GeneratorCommand
      */
     protected $signature = 'endpoint:make:model
                             {name : The name of the model}
-                            {--mongo : Generate a Laravel MongoDB Model (https://github.com/jenssegers/laravel-mongodb)}';
+                            {--mongo : Generate a Laravel MongoDB Model (https://github.com/jenssegers/laravel-mongodb)}
+                            {--module= : Generate under a namespace}';
     /**
      * The console command description.
      *
@@ -41,13 +42,16 @@ class MakeModelCommand extends GeneratorCommand
     }
 
     /**
-     * Get the default namespace for the class.
+     * Get the default Type namespace.
      *
-     * @param  string  $rootNamespace
      * @return string
      */
-    protected function getDefaultNamespace($rootNamespace)
+    protected function getTypeNamespace()
     {
-        return $rootNamespace;
+        if ($this->option('module')) {
+            return 'Models';
+        }
+
+        return '';
     }
 }

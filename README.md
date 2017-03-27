@@ -81,16 +81,31 @@ composer test
 php artisan endpoint:make:all Post v1
 ```
 
-Optionnaly, you can add the --mongo flag to generate a Laravel-MongoDB compatible Model.
-
-(You need to install https://github.com/jenssegers/laravel-mongodb in your app)
-
 This will create all this files.
 
 - app/Post.php
 - app/Repositories/PostRepository.php
 - app/Transformers/PostTransformer.php
 - app/Http/Controllers/Api/V1/PostController.php
+
+Options:
+
+- --mongo : Generate a Laravel-MongoDB compatible Model. (You need to install https://github.com/jenssegers/laravel-mongodb in your app)
+- --module=Modules\\Search : Generate all the files under the App\Modules\Search namespace.
+
+```
+    - app
+        - Modules
+            - Search
+                - Http\Controllers\Api\V1
+                - Models
+                - Repositories
+                - Transformers
+    - bootstrap
+    - config
+    - database
+    - ...
+```
 
 Then, you need to register your api routes.
 
@@ -192,6 +207,11 @@ Then you can include related models on your calls
 ```
 /api/v1/topics?include=posts,posts.author
 ```
+
+## Credits
+
+- http://fractal.thephpleague.com/transformers/
+- https://github.com/spatie/laravel-fractal
 
 ## License
 

@@ -2,7 +2,7 @@
 
 namespace DummyNamespace;
 
-use DummyFullModelClass;
+use DummyRootNamespace\DummyModelClassModule;
 
 class DummyModelClassRepository
 {
@@ -11,7 +11,7 @@ class DummyModelClassRepository
      *
      * @param  int $max Max items to return by page.
      *
-     * @return [type]      [description]
+     * @return Illuminate\Pagination\LengthAwarePaginator
      */
     public function paginate($max)
     {
@@ -23,7 +23,7 @@ class DummyModelClassRepository
      *
      * @param  int|string $id The id of the DummyModelVariable.
      *
-     * @return DummyModelClass|null
+     * @return DummyRootNamespace\DummyModelClassModule|null
      */
     public function find($id)
     {
@@ -35,7 +35,7 @@ class DummyModelClassRepository
      *
      * @param  array  $data The data needed for creation.
      *
-     * @return DummyFullModelClass       The created DummyModelVariable.
+     * @return DummyRootNamespace\DummyModelClassModule The created DummyModelVariable.
      */
     public function create(array $data)
     {
@@ -47,10 +47,10 @@ class DummyModelClassRepository
     /**
      * Update a DummyModelVariable.
      *
-     * @param  DummyFullModelClass $DummyModelVariable The DummyModelVariable to update.
+     * @param  DummyRootNamespace\DummyModelClassModule $DummyModelVariable The DummyModelVariable to update.
      * @param  array  $data          The data to update.
      *
-     * @return DummyFullModelClass                The updated DummyModelVariable.
+     * @return DummyRootNamespace\DummyModelClassModule The updated DummyModelVariable.
      */
     public function update($DummyModelVariable, array $data)
     {
@@ -63,7 +63,7 @@ class DummyModelClassRepository
     /**
      * Delete a model instance.
      *
-     * @param  DummyFullModelClass $DummyModelVariable The model instance to delete.
+     * @param  DummyRootNamespace\DummyModelClassModule $DummyModelVariable The model instance to delete.
      *
      * @return void
      */

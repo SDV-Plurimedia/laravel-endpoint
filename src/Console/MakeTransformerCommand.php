@@ -9,7 +9,9 @@ class MakeTransformerCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $signature = 'endpoint:make:transformer {name : The name of the model}';
+    protected $signature = 'endpoint:make:transformer
+                                                {name : The name of the model}
+                                                {--module= : Generate under a namespace}';
 
     /**
      * The console command description.
@@ -33,16 +35,5 @@ class MakeTransformerCommand extends GeneratorCommand
     protected function getStub()
     {
         return __DIR__.'/stubs/transformer.stub';
-    }
-
-    /**
-     * Get the default namespace for the class.
-     *
-     * @param  string  $rootNamespace
-     * @return string
-     */
-    protected function getDefaultNamespace($rootNamespace)
-    {
-        return $rootNamespace.'\Transformers';
     }
 }
