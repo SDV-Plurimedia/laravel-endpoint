@@ -2,8 +2,9 @@
 
 namespace SdV\Endpoint;
 
-use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use Illuminate\Http\JsonResponse;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
+use SdV\Endpoint\ApiError;
 
 trait ApiResponse
 {
@@ -65,7 +66,7 @@ trait ApiResponse
     /**
      * The request was unacceptable, often due to missing a required parameter.
      *
-     * @param  array
+     * @param  array|ApiError|string
      * @param  array
      * @return Response
      */
@@ -77,7 +78,7 @@ trait ApiResponse
     /**
      * No valid API key provided.
      *
-     * @param  array
+     * @param  array|ApiError|string
      * @param  array
      * @return Response
      */
@@ -87,9 +88,9 @@ trait ApiResponse
     }
 
     /**
-     * Access forbidde,.
+     * Access forbidden.
      *
-     * @param  array
+     * @param  array|ApiError|string
      * @param  array
      * @return Response
      */
@@ -101,7 +102,7 @@ trait ApiResponse
     /**
      * The requested resource doesn't exist.
      *
-     * @param  array
+     * @param  array|ApiError|string
      * @param  array
      * @return Response
      */
@@ -111,9 +112,21 @@ trait ApiResponse
     }
 
     /**
+     * The HTTP method is not allowed.
+     *
+     * @param  array|ApiError|string
+     * @param  array
+     * @return Response
+     */
+    public function methodNotAllowed($error, array $headers = [])
+    {
+        return $this->error($error, 405, $headers);
+    }
+
+    /**
      * The request sends invalid fields.
      *
-     * @param  array
+     * @param  array|ApiError|string
      * @param  array
      * @return Response
      */
@@ -125,7 +138,7 @@ trait ApiResponse
     /**
      * Too many requests hit the API.
      *
-     * @param  array
+     * @param  array|ApiError|string
      * @param  array
      * @return Response
      */
@@ -137,7 +150,7 @@ trait ApiResponse
     /**
      * Something went wrong on API server.
      *
-     * @param  array
+     * @param  array|ApiError|string
      * @param  array
      * @return Response
      */
@@ -149,12 +162,20 @@ trait ApiResponse
     /**
      * Send an error response.
      *
-     * @param  array
+     * @param  array|ApiError|string
      * @param  array
      * @return Response
      */
     public function error($error, $statusCode = 500, array $headers = [])
     {
+        if ($error instanceof ApiError) {
+            $error = $error->normalize();
+        }
+
+        if (is_string($error)) {
+            $error = (new ApiError($statusCode, $error))->normalize();
+        }
+
         return (new JsonResponse($error))->setStatusCode($statusCode)->withHeaders($headers);
     }
 }

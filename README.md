@@ -208,6 +208,24 @@ Then you can include related models on your calls
 /api/v1/topics?include=posts,posts.author
 ```
 
+## Error responses
+
+- Bad request (400) ```$this->badRequest('The request was unacceptable.')```
+- Unauthorized (401) ```$this->unauthorized('No valid API key was provided.')```
+- Forbidden (403) ```$this->forbidden('Access forbidden.')```
+- Not found (404) ```$this->notFound('Resource not found.')```
+- Method not allowed (405) ```$this->methodNotAllowed('The HTTP method is not allowed.')```
+- Unprocessable entity (422) ```$this->unprocessableEntity('Invalid fields.')```
+- Too many requests (429) ```$this->tooManyRequests('Too many requests hit the API.')```
+- Server error (500) ```$this->serverError('Internal server error.')```
+
+Note: The ```ProvidesExceptionsHandler``` comes with default support for the following exceptions:
+
+- Illuminate\Database\Eloquent\ModelNotFoundException
+- Illuminate\Validation\ValidationException
+- Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
+- Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+
 ## Credits
 
 - http://fractal.thephpleague.com/transformers/

@@ -19,6 +19,16 @@ class DummyModelClassRepository
     }
 
     /**
+     * Returns all the DummyModelClass instances.
+     *
+     * @return Illuminate\Support\Collection
+     */
+    public function all()
+    {
+        return DummyModelClass::all();
+    }
+
+    /**
      * Returns a DummyModelVariable by id.
      *
      * @param  int|string $id The id of the DummyModelVariable.
