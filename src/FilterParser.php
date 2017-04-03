@@ -15,6 +15,7 @@ class FilterParser implements Contract
         'gte' => '>=',
         'lte' => '<=',
         'neq' => '!=',
+        'lk' => 'like'
     ];
 
     public function __construct(array $filtrable = [])
