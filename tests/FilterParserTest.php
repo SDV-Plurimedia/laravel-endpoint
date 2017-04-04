@@ -54,4 +54,14 @@ class FilterParserTest extends AbstractTestCase
         $this->assertEquals(new Filter('slug', '=', 'laravel'), $filters[0]);
         $this->assertEquals(1, count($filters));
     }
+
+    /** @test */
+    function value_is_cast_in_array()
+    {
+        $parser = new FilterParser(['id']);
+
+        $filters = $parser->parse(['id,in,1,2']);
+
+        $this->assertEquals([1, 2], $filters[0]->value());
+    }
 }

@@ -24,6 +24,10 @@ class Filter
 
     public function value()
     {
+        if (is_string($this->value)) {
+            return urldecode($this->value);
+        }
+
         return $this->value;
     }
 

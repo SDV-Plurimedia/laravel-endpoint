@@ -27,11 +27,48 @@ class Builder
         $filters = $this->filterParser->parse($query);
 
         foreach ($filters as $filter) {
-            $this->qb->$clause(
-                $filter->field(),
-                $filter->operator(),
-                $filter->value()
-            );
+            switch ($filter->operator()) {
+                case 'in':
+                    $this->qb->whereIn(
+                        $filter->field(),
+                        is_array($filter->value()) ? $filter->value() : [$filter->value()]
+                    );
+                    break;
+                case 'nin':
+                    $this->qb->whereNotIn(
+                        $filter->field(),
+                        is_array($filter->value()) ? $filter->value() : [$filter->value()]
+                    );
+                    break;
+                case 'null':
+                    $this->qb->whereNull($filter->field());
+                    break;
+                case 'nnull':
+                    $this->qb->whereNotNull($filter->field());
+                    break;
+                case 'date':
+                    $this->qb->whereDate($filter->field(), $filter->value());
+                    break;
+                case 'btw':
+                    $this->qb->whereBetween(
+                        $filter->field(),
+                        is_array($filter->value()) ? $filter->value() : [$filter->value()]
+                    );
+                    break;
+                case 'nbtw':
+                    $this->qb->whereNotBetween(
+                        $filter->field(),
+                        is_array($filter->value()) ? $filter->value() : [$filter->value()]
+                    );
+                    break;
+                default:
+                    $this->qb->$clause(
+                        $filter->field(),
+                        $filter->operator(),
+                        $filter->value()
+                    );
+                    break;
+            }
         }
 
         return $this;
