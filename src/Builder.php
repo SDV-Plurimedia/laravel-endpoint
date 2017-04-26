@@ -22,7 +22,7 @@ class Builder
 
     public function filter(array $query = [], $satisfy)
     {
-        $clause = $satisfy == 'all' ? 'where' : 'orWhere';
+        $clause = $this->determineClause($satisfy);
 
         $filters = $this->filterParser->parse($query);
 
@@ -91,5 +91,10 @@ class Builder
     public function query()
     {
         return $this->qb;
+    }
+
+    protected function determineClause($satisfy)
+    {
+        return $satisfy == 'any' ? 'orWhere' : 'where';
     }
 }
