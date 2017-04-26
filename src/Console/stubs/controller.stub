@@ -35,11 +35,17 @@ class DummyModelClassController extends ApiController
      */
     public function index()
     {
-        $perPage = request('per_page', 15);
+        if (request('limit') == 'all') {
+            $DummyModelVariables = $this->DummyModelVariables->all();
 
-        $paginator = $this->DummyModelVariables->filtered(request('filter'), request('satisfy'), request('sort'))->paginate($perPage);
+            return $this->respond($DummyModelVariables, new DummyModelClassTransformer());
+        } else {
+            $perPage = request('per_page', 15);
 
-        return $this->respondPaginate($paginator, new DummyModelClassTransformer());
+            $paginator = $this->DummyModelVariables->filtered(request('filter'), request('satisfy'), request('sort'))->paginate($perPage);
+
+            return $this->respondPaginate($paginator, new DummyModelClassTransformer());
+        }
     }
 
     /**
