@@ -168,6 +168,12 @@ This will create the file ```app/Transformers/PostTransformer.php``` and insert 
 /api/v1/topics?per_page=50
 ```
 
+### Returns all
+
+```
+/api/v1/topics?limit=all
+```
+
 ### Filters
 
 The ```and``` filter is applied by default.
