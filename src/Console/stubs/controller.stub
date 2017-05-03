@@ -42,7 +42,7 @@ class DummyModelClassController extends ApiController
         } else {
             $perPage = request('per_page', 15);
 
-            $paginator = $this->DummyModelVariables->filtered(request('filter'), request('satisfy'), request('sort'))->paginate($perPage);
+            $paginator = $this->DummyModelVariables->filtered(request('filter'), request('satisfy'), request('sort'))->paginate((int) $perPage);
 
             return $this->respondPaginate($paginator, new DummyModelClassTransformer());
         }
