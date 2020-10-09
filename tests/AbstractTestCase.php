@@ -7,7 +7,7 @@ use PHPUnit_Framework_TestCase;
 
 abstract class AbstractTestCase extends \Orchestra\Testbench\TestCase
 {
-    public function tearDown()
+    protected function tearDown(): void
     {
         Mockery::close();
 
