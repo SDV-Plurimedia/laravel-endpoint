@@ -3,7 +3,7 @@
 namespace DummyNamespace;
 
 use SdV\Endpoint\Filtrable;
-use Jenssegers\Mongodb\Eloquent\Model;
+use MongoDB\Laravel\Eloquent\Model;
 
 class DummyModelClass extends Model
 {
